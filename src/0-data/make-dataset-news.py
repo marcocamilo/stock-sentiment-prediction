@@ -1,7 +1,23 @@
 import pandas as pd
 import requests
+from requests.api import get, request
 from tqdm import tqdm
 from datetime import datetime, timedelta
+
+#  ────────────────────────────────────────────────────────────────────
+#   TEST API                                                           
+#  ────────────────────────────────────────────────────────────────────
+# url = 'https://www.alphavantage.co/query?function=NEWS_SENTIMENT'
+#
+# params = dict(
+#     tickers = 'GOOG',
+#     time_from = '20240701T0000',
+#     apikey = 'NFQ3X9GCXNAJKMRS',
+#     limit = 50,
+# )
+#
+# r = requests.get(url, params)
+# data = r.json()
 
 #  ────────────────────────────────────────────────────────────────────
 #   ACCESS NEWS ARTICLES                                               
