@@ -3,6 +3,8 @@ import requests
 from requests.api import get, request
 from tqdm import tqdm
 from datetime import datetime, timedelta
+import os
+import re
 
 #  ────────────────────────────────────────────────────────────────────
 #   TEST API                                                           
@@ -95,9 +97,15 @@ display(df)
 #  ────────────────────────────────────────────────────────────────────
 #   MERGE DATASETS                                                     
 #  ────────────────────────────────────────────────────────────────────
-df1 = pd.read_parquet('./data/1-raw/TSLA/tsla-news.parquet')
-df2 = pd.read_parquet('./data/1-raw/TSLA/tsla-news-2.parquet')
-df3 = pd.read_parquet('./data/1-raw/TSLA/tsla-news-3.parquet')
+stocks = ['TSLA', 'AAPL', 'GOOG']
 
-df = pd.concat([df1, df2, df3])
-df.to_parquet('./data/1-raw/TSLA/tsla-news-master.parquet')
+for stock in tqdm(stocks):
+    directory = f'./data/1-raw/{stock}/'
+    pattern = fr'{stock.lower()}-news-\d\.parquet'
+    dfs = []
+    for file in sorted(os.listdir(directory)):
+        if re.search(pattern, file):
+            df = pd.read_parquet(directory + file)
+            dfs.append(df)
+    master_df = pd.concat(dfs)
+    master_df.to_parquet(directory + stock.lower() + '-news-master.parquet')
