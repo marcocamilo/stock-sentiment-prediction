@@ -1,5 +1,5 @@
 import pandas as pd
-from IPython import display
+from IPython.display import display
 
 def df_overview(df: pd.DataFrame):
     """
