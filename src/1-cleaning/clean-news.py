@@ -27,12 +27,12 @@ print(f"Date span: {df.date.min()} – {df.date.max()}")
 #  ────────────────────────────────────────────────────────────────────
 #   MISSING AND DULPLICATE VALUES CHECK                                
 #  ────────────────────────────────────────────────────────────────────
-df.isna().mean()
-df.isduplicate().mean()
+print(df.isna().mean())
+print(df.duplicated().mean())
 
-df[df.duplicated()]
+display(df[df.duplicated()])
 df = df.drop_duplicates()
-df.isduplicate().mean()
+print(df.duplicated().mean())
 
 #  ────────────────────────────────────────────────────────────────────
 #   TEXT CLEANING                                                      

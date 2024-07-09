@@ -27,8 +27,9 @@ df.duplicated().mean()
 #   KEEP RELEVANT COLUMNS                                              
 #  ────────────────────────────────────────────────────────────────────
 df = df[['Date', 'Close', 'stock']]
+df.columns = df.columns.str.lower()
 
 #  ────────────────────────────────────────────────────────────────────
 #   SAVE CLEANED DATASET
 #  ────────────────────────────────────────────────────────────────────
-df.to_parquet('./data/3-processed/stocks-history.parquet')
+df.to_parquet('./data/2-processed/stock-history.parquet')

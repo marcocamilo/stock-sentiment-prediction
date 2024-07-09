@@ -8,6 +8,6 @@ news = pd.read_parquet('./data/2-interim/stock-news-cleaned.parquet')
 #  ────────────────────────────────────────────────────────────────────
 #   EXPLORE STOCKS                                                     
 #  ────────────────────────────────────────────────────────────────────
-sns.lineplot(history, x='Date', y='Close', hue='Stock')
-plt.title(f"{history['Stock'][0]}: {history.Date.min()} – {history.Date.max()}")
+sns.lineplot(history, x='date', y='close', hue='stock')
+plt.title(f"{history['stock'][0]}: {history.date.min()} – {history.date.max()}")
 plt.show()
