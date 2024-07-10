@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
 from tensorflow.keras import Sequential
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.layers import GRU, LSTM, Dense, Dropout
@@ -24,49 +25,47 @@ df.insert(9, "close", df.pop("close"))
 #  ────────────────────────────────────────────────────────────────────
 #   PREPARE SEQUENTIAL DATA
 #  ────────────────────────────────────────────────────────────────────
-class StockData:
-    def __init__(self, stock, data, look_back=30) -> None:
+class StockData():
+    def __init__(self, stock, data, look_back=30, test_size=0.2):
         self.stock = stock
         self.data = data.query(f"stock == '{stock}'").copy()
         self.data.drop("stock", axis=1, inplace=True)
         self.look_back = look_back
-        self.scaler = MinMaxScaler()
-        self.data_scaled = self.scaler.fit_transform(self.data)
-
-    def create_sequences(self):
-        X, y = [], []
+        self.test_size = test_size
+        self.x_scaler = MinMaxScaler()
+        self.y_scaler = MinMaxScaler()
         
-        for i in range(len(self.data_scaled) - self.look_back):
-            X.append(self.data_scaled[i : i + self.look_back])
-            y.append(self.data_scaled[i + self.look_back, -1])
+        self.X = self.data.values
+        self.y = self.data['close'].values.reshape(-1,1)
         
-        return np.array(X), np.array(y)
+    def create_sequences(self, data):
+        input_data = []
+        target_data = []
+        for i in range(len(data[0]) - self.look_back):
+            input_seq = data[0][i:i+self.look_back]
+            input_data.append(input_seq)
 
-    def split(self, train_factor=0.8):
-        X, y = self.create_sequences()
-        split = int(len(X) * train_factor)
-        X_train, y_train = X[:split], y[:split]
-        X_test, y_test = X[split:], y[split:]
-
-        return X_train, y_train, X_test, y_test
+            target_value = data[1][i+self.look_back]
+            target_data.append(target_value)
+        return np.array(input_data), np.array(target_data)
+        
+    def scale_split_sequence(self):
+        X_scaled = self.x_scaler.fit_transform(self.X)
+        y_scaled = self.y_scaler.fit_transform(self.y)
+        
+        X_train, X_test, y_train, y_test = train_test_split(X_scaled, y_scaled, 
+                                                            test_size=self.test_size, 
+                                                            shuffle=False)
+        
+        X_train, y_train = self.create_sequences([X_train, y_train])
+        X_test, y_test = self.create_sequences([X_test, y_test])
+        
+        return X_train, X_test, y_train, y_test
 
 
 TSLA = StockData("TSLA", df)
 AAPL = StockData("AAPL", df)
 GOOG = StockData("GOOG", df)
-
-#  ────────────────────────────────────────────────────────────────────
-#   PLOT STOCKS                                                        
-#  ────────────────────────────────────────────────────────────────────
-fig, axes = plt.subplots(1, 3, figsize=(15,5))
-axes = axes.flatten()
-
-for i, stock in enumerate(df.stock.unique()):
-    data = df.query("stock == @stock").copy().reset_index()
-    split = int(len(data) * 0.8)
-    axes[i].plot(data.loc[:split, 'close'])
-    axes[i].plot(data.loc[split:, 'close'])
-plt.show()
 
 #  ────────────────────────────────────────────────────────────────────
 #   MODEL PIPELINE
