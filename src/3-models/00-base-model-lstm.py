@@ -20,7 +20,6 @@ pd.set_option('display.float_format', lambda x: '%.2f' % x)
 #   IMPORT DATA
 #  ────────────────────────────────────────────────────────────────────
 df = pd.read_parquet("./data/3-processed/stock-history-features.parquet")
-df.insert(9, "close", df.pop("close"))
 
 #  ────────────────────────────────────────────────────────────────────
 #   PREPARE SEQUENTIAL DATA
