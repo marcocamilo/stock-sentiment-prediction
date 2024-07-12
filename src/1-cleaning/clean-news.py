@@ -47,8 +47,8 @@ def preprocess_texts_multithread(texts):
         processed_texts.append(processed_text)
     return processed_texts
 
-df['cleaned_title'] = preprocess_texts_multithread(df['title'])
-df['cleaned_summary'] = preprocess_texts_multithread(df['summary'])
+df['title'] = preprocess_texts_multithread(df['title'])
+df['summary'] = preprocess_texts_multithread(df['summary'])
 
 # ────────────────────────────────────────────────────────────────────
 #  SAVE CLEANED DATA
