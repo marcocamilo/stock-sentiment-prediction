@@ -1,7 +1,7 @@
 [logo]
 
-# TITLE
-### SUBTITLE
+# FinBERT, CNN, and GRU for Stock Sentiment Analysis and Prediction
+### Predicting performance of TSLA, AAPL, and GOOG using news headlines and summaries
 
 ![PyTorch](https://img.shields.io/badge/pytorch-white?logo=pytorch)
 ![HugginFace](https://img.shields.io/badge/transformers-white?logo=huggingface&logoColor=yellow)
