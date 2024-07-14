@@ -1,36 +1,20 @@
-import pandas as pd
-import pandas_ta as ta
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
 from sklearn.ensemble import RandomForestRegressor
-import matplotlib.pyplot as plt
-import seaborn as sns
-import yfinance as yf
 
 df = pd.read_parquet("./data/2-interim/stock-history-cleaned.parquet")
 
 #  ────────────────────────────────────────────────────────────────────
-#   DOWNLOAD LOOKBACK DATA                                                       
-#  ────────────────────────────────────────────────────────────────────
-stocks = ["TSLA", "AAPL", "GOOG"]
-for stock in stocks:
-    data = yf.download(stock, start="2021-12-22", end="2022-01-03", ignore_tz=False).reset_index()
-    data.columns = [col.lower() for col in data.columns]
-    data = data[['date', 'close']]
-    data["stock"] = stock
-    df = pd.concat([df, data], axis=0)
-df = df.sort_values(["stock", "date"]).reset_index(drop=True)
-
-#  ────────────────────────────────────────────────────────────────────
 #   TIME FEATURES
 #  ────────────────────────────────────────────────────────────────────
-df["day_of_week"] = df["date"].dt.day_of_week
-df["day"] = df["date"].dt.day
-df["month"] = df["date"].dt.month
-df["year"] = df["date"].dt.year
+df["day_of_week"] = pd.to_datetime(df["date"]).dt.day_of_week
+df["day"] = pd.to_datetime(df["date"]).dt.day
+df["month"] = pd.to_datetime(df["date"]).dt.month
+df["year"] = pd.to_datetime(df["date"]).dt.year
 
 #  ────────────────────────────────────────────────────────────────────
-#   LAG FEATURES                                                       
+#   LAG FEATURES
 #  ────────────────────────────────────────────────────────────────────
 df["lag_1"] = df.groupby("stock")["close"].shift(1)
 df["lag_2"] = df.groupby("stock")["close"].shift(2)
@@ -57,31 +41,34 @@ df["rolling_std_14"] = df.groupby("stock")["close"].transform(
 )
 
 #  ────────────────────────────────────────────────────────────────────
-#   CLEAN DATA                                                         
+#   CLEAN DATA
 #  ────────────────────────────────────────────────────────────────────
-df = df.dropna().reset_index(drop=True)
-df.drop("date", axis=1, inplace=True)
+start_date = pd.to_datetime("2022-03-01").date()
+end_date = pd.to_datetime("2024-07-01").date()
+mask = (df['date'] >= start_date) & (df['date'] <= end_date)
+df = df[mask].reset_index(drop=True)
+
 df.insert(16, "close", df.pop("close"))
 
 #  ────────────────────────────────────────────────────────────────────
-#   FEATURE IMPORTANCE                                                 
+#   FEATURE IMPORTANCE
 #  ────────────────────────────────────────────────────────────────────
 stocks = dict(
-    tsla = df.query("stock == 'TSLA'").copy().values,
-    aapl = df.query("stock == 'AAPL'").copy().values,
-    goog = df.query("stock == 'GOOG'").copy().values,
+    tsla=df.query("stock == 'TSLA'").copy().values,
+    aapl=df.query("stock == 'AAPL'").copy().values,
+    goog=df.query("stock == 'GOOG'").copy().values,
 )
 
 feature_importance = dict()
 
 for key, data in stocks.items():
     model = RandomForestRegressor()
-    X = data[:,1:-1]
-    y = data[:,-1]
+    X = data[:, 2:-1]
+    y = data[:, -1]
     model.fit(X, y)
     feature_importance[key] = model.feature_importances_
 
-columns = df.columns.to_list()[1:-1]
+columns = df.columns.to_list()[2:-1]
 
 fig, axes = plt.subplots(3, 1)
 axes = axes.flatten()
@@ -95,12 +82,20 @@ plt.tight_layout()
 plt.show()
 
 #  ────────────────────────────────────────────────────────────────────
-#   DROP LESS IMPORTANT FEATURES                                       
+#   DROP LESS IMPORTANT FEATURES
 #  ────────────────────────────────────────────────────────────────────
-df.drop(columns=[
-    "lag_3", "lag_4", "lag_5", "lag_6", "lag_7",
-    "rolling_std_7", "rolling_std_14",
-], inplace=True)
+df.drop(
+    columns=[
+        "lag_3",
+        "lag_4",
+        "lag_5",
+        "lag_6",
+        "lag_7",
+        "rolling_std_7",
+        "rolling_std_14",
+    ],
+    inplace=True,
+)
 
 #  ────────────────────────────────────────────────────────────────────
 #   SAVE DATA

@@ -14,17 +14,6 @@ df = pd.concat(
 print(df.shape)
 
 #  ────────────────────────────────────────────────────────────────────
-#   DATE DTYPE AND FILTERING
-#  ────────────────────────────────────────────────────────────────────
-df['date'] = pd.to_datetime(df['date'], format="%Y%m%dT%H%M%S")
-print(f"Date span: {df.date.min()} – {df.date.max()}")
-
-# mask all rows with date july 04 2024 or later
-mask = df['date'] < '2024-07-04'
-df = df[mask]
-print(f"Date span: {df.date.min()} – {df.date.max()}")
-
-#  ────────────────────────────────────────────────────────────────────
 #   MISSING AND DULPLICATE VALUES CHECK                                
 #  ────────────────────────────────────────────────────────────────────
 print(df.isna().mean())
@@ -33,6 +22,19 @@ print(df.duplicated().mean())
 display(df[df.duplicated()])
 df = df.drop_duplicates()
 print(df.duplicated().mean())
+
+#  ────────────────────────────────────────────────────────────────────
+#   DATE DTYPE AND FILTERING
+#  ────────────────────────────────────────────────────────────────────
+df['date'] = pd.to_datetime(df['date'], format="%Y%m%dT%H%M%S").dt.date
+print(f"Date span: {df.date.min()} – {df.date.max()}")
+
+# mask all rows with date july 01 2024 or later
+filter = df['date'] <= pd.to_datetime("2024-07-01").date()
+df = df[filter]
+print(f"Date span: {df.date.min()} – {df.date.max()}")
+
+display(df)
 
 #  ────────────────────────────────────────────────────────────────────
 #   TEXT CLEANING                                                      

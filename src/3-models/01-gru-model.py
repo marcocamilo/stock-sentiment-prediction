@@ -14,9 +14,10 @@ figsize = (16,4)
 plt.rcParams['figure.figsize'] = figsize
 pd.set_option('display.float_format', lambda x: '%.2f' % x)
 
-df = pd.read_parquet("/kaggle/input/stock-history/stock-history-features.parquet")
-df.insert(9, "close", df.pop("close"))
-
+#  ────────────────────────────────────────────────────────────────────
+#   IMPORT DATA
+#  ────────────────────────────────────────────────────────────────────
+df = pd.read_parquet("./data/3-processed/stock-history-features.parquet")
 display(df)
 
 #  ────────────────────────────────────────────────────────────────────
@@ -163,25 +164,27 @@ class StockModel:
 #  ────────────────────────────────────────────────────────────────────
 #   TSLA                                                               
 #  ────────────────────────────────────────────────────────────────────
-model = StockModel(TSLA, GRUHyperModel())
-best_model = model.train_best_model()
-best_model.summary()
+tsla_model = StockModel(TSLA, GRUHyperModel())
+best_tsla_model = tsla_model.train_best_model()
+best_tsla_model.summary()
 
-model.evaluate_model()
+tsla_model.evaluate_model()
 
 #  ────────────────────────────────────────────────────────────────────
 #   AAPL                                                               
 #  ────────────────────────────────────────────────────────────────────
-model = StockModel(AAPL, GRUHyperModel())
-model.train_best_model().summary()
+aapl_model = StockModel(AAPL, GRUHyperModel())
+best_aapl_model = aapl_model.train_best_model()
+best_aapl_model.summary()
 
-model.evaluate_model()
+aapl_model.evaluate_model()
 
 #  ────────────────────────────────────────────────────────────────────
 #   GOOG                                                               
 #  ────────────────────────────────────────────────────────────────────
-model = StockModel(GOOG, GRUHyperModel())
-model.train_best_model().summary()
+goog_model = StockModel(GOOG, GRUHyperModel())
+best_goog_model = goog_model.train_best_model()
+best_goog_model.summary()
 
-model.evaluate_model()
+goog_model.evaluate_model()
 
