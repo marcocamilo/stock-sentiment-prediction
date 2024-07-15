@@ -78,6 +78,8 @@ for ax, (key, data) in zip(axes, feature_importance.items()):
     ax.set(ylim=(0, 1))
     ax.set_title(key)
     ax.tick_params(labelrotation=45)
+    for i, v in enumerate(data):
+        ax.text(i, v + 0.02, f"{v:.2f}", ha="center")
 plt.tight_layout()
 plt.show()
 
