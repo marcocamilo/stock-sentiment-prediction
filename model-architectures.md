@@ -11,14 +11,39 @@ graph TD
     end
 
     subgraph FinBERT
-        A --> C[Tokenizer]
+        A --> C["🧱 Tokenizer"]
         C --> D["🤗 FinBERT"]
-        D --> E[Sentiment Scores]
+        D --> E["💭 Sentiment Scores"]
     end
 
     subgraph GRU
         E --> F["🤖 GRUHyperModel"]
         B --> F
+        F --> G["📈 Price Predictions"]
+    end
+
+```
+
+## CNN + GRU
+
+```{mermaid}
+graph TD
+
+    subgraph Input
+        A["📰 News Input"]
+        B["💰 Price Input"]
+    end
+
+    subgraph CNN_Sentiment_Analysis
+        A --> C["🧤 GloVe"]
+        C --> D["🧠 CNN"]
+        D --> E["💭 Sentiment Scores"]
+    end
+
+    subgraph GRU
+        E --> F["🤖 GRUHyperModel"]
+        B --> F
+        F --> G["📈 Price Predictions"]
     end
 
 ```

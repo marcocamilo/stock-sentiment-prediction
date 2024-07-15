@@ -76,10 +76,11 @@ df[sentiment_columns[:3]] = title_sentiments
 df[sentiment_columns[3:]] = summary_sentiments
 display(df)
 
-news_sentiments = df.groupby(['stock', 'date'])[sentiment_columns].mean().reset_index()
-display(news_sentiments)
+sentiment_aggs = df.groupby(['stock', 'date'])[sentiment_columns].mean().reset_index()
+display(sentiment_aggs)
 
 #  ────────────────────────────────────────────────────────────────────
 #   SAVE DATA
 #  ────────────────────────────────────────────────────────────────────
 df.to_parquet("news-sentiment-features.parquet")
+sentiment_aggs.to_parquet("news-sentiment-aggs.parquet")
