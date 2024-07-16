@@ -88,7 +88,7 @@ def fetch_articles(ticker, start_date_str, api_key, limit=1000):
 
 ticker = "GOOG"
 start_date_str = "20220101T0000"
-api_key = "NFQ3X9GCXNAJKMRS"
+api_key = "api_key"
 
 df = fetch_articles(ticker, start_date_str, api_key)
 display(df)

@@ -10,12 +10,7 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 #  ────────────────────────────────────────────────────────────────────
 df = pd.read_parquet("./data/2-interim/stock-news-cleaned.parquet")
 
-if torch.cuda.is_available():
-    device = torch.device("cuda")
-else:
-    device = torch.device("cpu")
-
-print(f"Using {device}.")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 #  ────────────────────────────────────────────────────────────────────
 #   TOKENIZATION AND SENTIMENT ANALYSIS
@@ -38,7 +33,6 @@ class TextDataset(Dataset):
 
 def collate_fn(batch):
     return tokenizer(batch, padding=True, truncation=True, return_tensors="pt")
-
 
 def sentiment_analyzer(texts, batch_size=64):
     dataset = TextDataset(texts)

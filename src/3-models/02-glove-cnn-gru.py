@@ -8,7 +8,9 @@ import tensorflow as tf
 from tensorflow.keras import Sequential
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.layers import GRU, LSTM, Dense, Dropout
+
 import keras_tuner as kt
+from tqdm import tqdm 
 
 figsize = (16,4)
 plt.rcParams['figure.figsize'] = figsize

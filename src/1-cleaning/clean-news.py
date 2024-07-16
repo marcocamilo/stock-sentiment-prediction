@@ -1,9 +1,10 @@
 import pandas as pd
 from tqdm import tqdm
 import spacy
+from spacy_cleaner import Cleaner, processing
 
 #  ────────────────────────────────────────────────────────────────────
-#   CREATE MASTER DATASET                                              
+#   JOIN STOCK DATASETS                                             
 #  ────────────────────────────────────────────────────────────────────
 stocks = ["TSLA", "AAPL", "GOOG"]
 
@@ -29,7 +30,7 @@ print(df.duplicated().mean())
 df['date'] = pd.to_datetime(df['date'], format="%Y%m%dT%H%M%S").dt.date
 print(f"Date span: {df.date.min()} – {df.date.max()}")
 
-# mask all rows with date july 01 2024 or later
+# Keep rows with date before or equal to July 01 2024
 filter = df['date'] <= pd.to_datetime("2024-07-01").date()
 df = df[filter]
 print(f"Date span: {df.date.min()} – {df.date.max()}")
@@ -41,16 +42,18 @@ display(df)
 #  ────────────────────────────────────────────────────────────────────
 nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
 
-def preprocess_texts_multithread(texts):
-    texts = list(texts) 
-    processed_texts = []
-    for doc in tqdm(nlp.pipe(texts, disable=["ner", "parser"], n_process=-1), total=len(texts)):
-        processed_text = ' '.join([token.lemma_.lower() for token in doc if not token.is_stop and not token.is_punct])
-        processed_texts.append(processed_text)
-    return processed_texts
+def mutate_lemma_lower(tok) -> str:
+    return tok.lemma_.lower()
 
-df['title'] = preprocess_texts_multithread(df['title'])
-df['summary'] = preprocess_texts_multithread(df['summary'])
+cleaner = Cleaner(
+    nlp,
+    processing.remove_stopword_token,
+    processing.remove_punctuation_token,
+    mutate_lemma_lower,
+)
+
+df['title'] = cleaner.clean(df['title'], n_process=-1)
+df['summary'] = cleaner.clean(df['summary'], n_process=-1)
 
 # ────────────────────────────────────────────────────────────────────
 #  SAVE CLEANED DATA

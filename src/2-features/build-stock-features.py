@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-from sklearn.ensemble import RandomForestRegressor
+from xgboost import XGBRegressor
 
-df = pd.read_parquet("./data/2-interim/stock-history-cleaned.parquet")
+# df = pd.read_parquet("./data/2-interim/stock-history-cleaned.parquet")
+df = pd.read_parquet("~/Downloads/stock-history-features-full.parquet")
 
 #  ────────────────────────────────────────────────────────────────────
 #   TIME FEATURES
@@ -48,7 +49,7 @@ end_date = pd.to_datetime("2024-07-01").date()
 mask = (df['date'] >= start_date) & (df['date'] <= end_date)
 df = df[mask].reset_index(drop=True)
 
-df.insert(16, "close", df.pop("close"))
+df.insert(17, "close", df.pop("close"))
 
 #  ────────────────────────────────────────────────────────────────────
 #   FEATURE IMPORTANCE
@@ -62,7 +63,7 @@ stocks = dict(
 feature_importance = dict()
 
 for key, data in stocks.items():
-    model = RandomForestRegressor()
+    model = XGBRegressor()
     X = data[:, 2:-1]
     y = data[:, -1]
     model.fit(X, y)
@@ -86,20 +87,24 @@ plt.show()
 #  ────────────────────────────────────────────────────────────────────
 #   DROP LESS IMPORTANT FEATURES
 #  ────────────────────────────────────────────────────────────────────
-df.drop(
-    columns=[
-        "lag_3",
-        "lag_4",
-        "lag_5",
-        "lag_6",
-        "lag_7",
-        "rolling_std_7",
-        "rolling_std_14",
-    ],
-    inplace=True,
-)
+df.to_parquet("./data/3-processed/stock-history-features-full.parquet")
+
+# df.drop(
+#     columns=[
+#         "lag_3",
+#         "lag_4",
+#         "lag_5",
+#         "lag_6",
+#         "lag_7",
+#         "rolling_std_7",
+#         "rolling_std_14",
+#     ],
+#     inplace=True,
+# )
+
+df = df[['lag_1', 'rolling_mean_7']]
 
 #  ────────────────────────────────────────────────────────────────────
 #   SAVE DATA
 #  ────────────────────────────────────────────────────────────────────
-df.to_parquet("./data/3-processed/stock-history-features.parquet", index=False)
+df.to_parquet("./data/3-processed/stock-history-features-minimal.parquet")

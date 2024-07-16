@@ -1,0 +1,21 @@
+Filtered features:
+tsla_lstm (7.70, 96.66%)
+tsla_gru (7.37, 96.92%)
+aapl_lstm (5.91, 97.33%)
+aapl_gru (4.10, 98.28%)
+goog_lstm (16.09, 91.78%)
+goog_gru (7.83, 95.94%)
+tsla_acnnlstm (16.65 91.51
+aapl_acnnlstm
+goog_acnnlstm
+
+Full features:
+tsla_lstm (8.74, 96.18%)
+tsla_gru (8.52, 96.12%)
+aapl_lstm (6.06, 97.29%)
+aapl_gru (4.61, 98.01%)
+goog_lstm (15.01, 92.27%)
+goog_gru (4.37, 97.75%)
+tsla_acnnlstm (9.58, 95.57%)
+aapl_acnnlstm (5.79, 97.64%)
+goog_acnnlstm (13.04, 92.86%)
