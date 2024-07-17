@@ -1,7 +1,7 @@
 [logo]
 
-# FinBERT, CNN, and GRU for Stock Sentiment Analysis and Prediction
-### Predicting performance of TSLA, AAPL, and GOOG using news headlines and summaries
+# Optimizing Stock Price Forecasting Using Modern RNNs
+### Evaluating the Impact of Sentiment Analysis on LSTM, GRU, and Attention-CNN-LSTM Models
 
 ![PyTorch](https://img.shields.io/badge/pytorch-white?logo=pytorch)
 ![HugginFace](https://img.shields.io/badge/transformers-white?logo=huggingface&logoColor=yellow)
@@ -22,11 +22,7 @@
 
 ## 📌 Overview
 
-This project focuses on performing [data science task] on [data] using [techniques]. The primary goal is to [what] [how] based on [key features]. This project explores [project phases/steps].
-
-This project focuses on predicting stock price movements of TSLA, AAPL, and GOOGL using deep learning techniques such as LSTM, GRU, and Attention-CNN-LSTM models. The primary goal is to optimize forecasting accuracy by leveraging historical stock data from Yahoo Finance and news sentiment data from Alpha Vantage. This exploration spans model testing with and without sentiment analysis to evaluate predictive capabilities.
-
-This project explores the predictive capabilities of various deep learning models on stock price performance spanning from March 3rd, 2022 to July 3rd, 2024. The analysis focuses on three prominent tech stocks: TSLA, AAPL, and GOOGL, chosen for their distinct characteristics such as high volatility, continuous innovation, and robust media coverage. Utilizing historical stock data sourced from Yahoo Finance and news sentiment data from Alpha Vantage, the models are tested both with and without sentiment analysis to evaluate their effectiveness in forecasting stock trends. Key objectives include leveraging LSTM, GRU, and Attention-CNN-LSTM models to capture long-term dependencies, improve training efficiency, and integrate attention mechanisms for enhanced predictive accuracy. The project aims to provide insights into optimizing model performance for real-world applications in financial forecasting.
+This project focuses on optimizing the predictive capabilities of modern RNN models for stock price movements of TSLA, AAPL, and GOOG. The goal is to enhance forecasting accuracy by utilizing historical stock data and news sentiment data. The analysis evaluates the performance of LSTM, GRU, and Attention-CNN-LSTM models, tested with and without sentiment data, to determine their effectiveness in time series prediction.
 
 ## 🚀 Key Takeaways
 
