@@ -24,7 +24,9 @@
 
 This project focuses on performing [data science task] on [data] using [techniques]. The primary goal is to [what] [how] based on [key features]. This project explores [project phases/steps].
 
-This project predicts stock performance using sentiment analysis from text data with a character-based CNN and LSTM model, showcasing your proficiency in TensorFlow.
+This project focuses on predicting stock price movements of TSLA, AAPL, and GOOGL using deep learning techniques such as LSTM, GRU, and Attention-CNN-LSTM models. The primary goal is to optimize forecasting accuracy by leveraging historical stock data from Yahoo Finance and news sentiment data from Alpha Vantage. This exploration spans model testing with and without sentiment analysis to evaluate predictive capabilities.
+
+This project explores the predictive capabilities of various deep learning models on stock price performance spanning from March 3rd, 2022 to July 3rd, 2024. The analysis focuses on three prominent tech stocks: TSLA, AAPL, and GOOGL, chosen for their distinct characteristics such as high volatility, continuous innovation, and robust media coverage. Utilizing historical stock data sourced from Yahoo Finance and news sentiment data from Alpha Vantage, the models are tested both with and without sentiment analysis to evaluate their effectiveness in forecasting stock trends. Key objectives include leveraging LSTM, GRU, and Attention-CNN-LSTM models to capture long-term dependencies, improve training efficiency, and integrate attention mechanisms for enhanced predictive accuracy. The project aims to provide insights into optimizing model performance for real-world applications in financial forecasting.
 
 ## 🚀 Key Takeaways
 
@@ -56,41 +58,76 @@ This project predicts stock performance using sentiment analysis from text data 
 
 ## 🎯 Approach
 
-1. **Data Collection**: [Data collection process]
-2. **Data Preprocessing**: [Data preprocessing steps]
-3. **Exploratory Data Analysis (EDA)**: [EDA steps]
-4. **Feature Engineering**: [Feature engineering steps]
-5. **Model Development**: [Model development steps]
-6. **Model Evaluation**: [Model evaluation steps]
-7. **Model Deployment**: [Model deployment steps]
+1. **Data Collection**: Acquired stock data from Yahoo Finance and news data from Alpha Vantage covering TSLA, AAPL, and GOOG from March 3rd, 2022, to July 3rd, 2024.
+2. **Data Preprocessing**: Cleaned and engineered features for both stock and news datasets, including handling missing values, converting date formats, creating lag features, and performing sentiment analysis.
+3. **Baseline Modeling**: Implemented Moving Average and XGBoost Regressor models for initial stock price predictions based on historical data and engineered features.
+4. **Model Development (Vanilla and Advanced RNNs)**: Developed LSTM, GRU, and Attention-CNN-LSTM models to capture sequential dependencies and sentiment-driven insights for improved stock price prediction.
+5. **Evaluation**: Evaluated model performance using metrics such as RMSE and accuracy, visualizing predictions against actual stock prices and sentiment trends to assess effectiveness in capturing market dynamics and sentiment-driven fluctuations.
 
 ## 💾 Dataset
 
-[description]
-
-1. **Feature 1**: [Feature 1 description]
-2. **Feature 2**: [Feature 2 description]
-3. **Feature 3**: [Feature 3 description]
-4. **Feature 4**: [Feature 4 description]
-5. **Feature 5**: [Feature 5 description]
+- **Time Frame**: March 3, 2022 to July 3, 2024 (2.25 years)
+- **Stock Choices**
+	- **TSLA**: Chosen to challenge the models with its high volatility during the selected period, complemented by extensive news and social media coverage, and leadership in AI and autonomous driving technologies.
+	- **AAPL**: Selected for its consistent innovation, significant media presence, and diverse product range.
+	- **GOOG**: Included due to its robust news coverage, stable growth trajectory, and extensive technological initiatives.
+- **Sources**
+	- **News Data**: [Alpha Vantage](https://www.alphavantage.co/)
+		- Provides comprehensive financial APIs for stock market data, including news headlines and sentiment analysis.
+	- **Stock Data**: [Yahoo Finance](https://finance.yahoo.com/) (via [yfinance](https://github.com/ranaroussi/yfinance) package)
+		- Offers historical and real-time stock data accessible programmatically through the yfinance Python package.
 
 ## 🔨 Preprocessing
 
-## 🔎 Exploratory Data Analysis (EDA)
+### Preprocessing
 
-The exploratory data analysis steps are as follows:
+- Standard data preprocessing: missing value check, duplicate removal, data type conversion.
+- I filtered the data to ensure both news and stock data consist of the same window of data, in particular after feature engineering.
+- Utilized the SpaCy and SpaCy-Cleaner libraries to implement functions to remove stopwords, punctuation, and lemmatize tokens to normalize text data.
 
-1. **Univariate Analysis**: [Univariate analysis steps]
-2. **Bivariate Analysis**: [Bivariate analysis steps]
-3. **Correlation Analysis**: [Correlation analysis steps]
-4. **Statistical Analysis**: [Statistical analysis steps]
-5. **Visualizations**: [Visualization steps]
+## Feature Engineering
 
-![](https://d33wubrfki0l68.cloudfront.net/09f563483e610927825f4d64e30c4f81f3db1f1d/aa1a9/wp-content/uploads/2019/07/distplot.png)
+- Implemented the FinBERT model using PyTorch (model's default library) to tokenize and compute sentiment scores (positive, negative, neutral) for both news titles and summaries.
+- Computed mean sentiment scores (`title_pos`, `title_neg`, `title_neu`, `summary_pos`, `summary_neg`, `summary_neu`) grouped by stock and date to summarize sentiment trends.
+- Extracted the time features such as day of the week, day, month, and year from the date column to capture temporal patterns.
+- Created lag features (`lag_1` to `lag_7`) to incorporate historical prices as predictors.
+- Computed rolling mean and standard deviation over 7-day and 14-day windows to capture short-term trends and volatility.
 
 ## 🧠 Model Development
 
-## 📊 Model Performance
+### Prediction Models
+
+#### Baseline: Moving Average and `XGBoost Regressor`
+
+- **Moving Average**: the average closing price over the past 7 and 14 days is used as the prediction.
+- **XGBoost Regressor**: an implementation of gradient boosting using decision trees, which builds sequentially optimizing models, incorporates regularization, handles missing values, supports parallel processing, and prunes branches for enhanced performance and scalability.
+
+#### Vanilla and Sentiment-Enhanced RNN Models
+
+- **LSTM**: uses input, output, and forget gates to manage long-term dependencies and prevent the vanishing gradient problem in sequential data.
+- **GRU**: a simplified LSTM using reset and update gates to manage dependencies and improve training efficiency.
+- **Attention-CNN-LSTM** (only with sentiment data): a hybrid model combining convolutional layers for feature extraction, attention mechanisms for focusing on relevant information, and LSTM layers for sequence prediction.
+
+### Implementation
+
+#### 1. Data Preparation: `StockData`
+
+- Packages all data preparation tasks, including scaling, sequence creation, and train-test splitting.
+- Handles the inverse transformation of scaled data for result interpretation.
+- Plots the data by training and test sets for visualization.
+
+#### 2. Model Development: `Hypermodel`
+
+- Implements Keras Tuner for hyperparameter tuning for model selection.
+- Defines the model architecture and hyperparameter search space.
+- Compiles the model for fine-tuning with the chosen optimizer and loss function.
+
+#### 3. Training and Evaluation: `StockModel`
+
+- Integrates data and hypermodel classes for model training and evaluation.
+- Conducts hyperparameter tuning to find the best model configuration.
+- Evaluates the best model on the test data, calculating RMSE and accuracy.
+- Plots predicted vs. actual stock prices for visualization of model performance.
 
 ## 📈 Results and Discussion
 
