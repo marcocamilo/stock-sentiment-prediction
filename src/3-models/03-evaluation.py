@@ -17,6 +17,7 @@ rnn_models.insert(2, "Sentiment", 0)
 model_performance = pd.concat([rnn_models, finbert_rnn_models])
 main_cols = ["Stock", "Model", "Sentiment", "Accuracy", "RMSE"]
 
+print(model_performance)
 #  ────────────────────────────────────────────────────────────────────
 #   VISUALIZE PERFORMANCE
 #  ────────────────────────────────────────────────────────────────────
@@ -26,3 +27,5 @@ for ax in g.axes.flat:
     for bars in ax.containers:
         ax.bar_label(bars, fmt='%.2f')
 plt.show()
+
+g.savefig('./output/model-rmse-comparison.png')

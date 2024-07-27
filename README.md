@@ -4,7 +4,7 @@
 ![tensorflow](https://img.shields.io/badge/tensorflow-white?logo=tensorflow)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-white?logo=scikit-learn)
 ![Gensim](https://img.shields.io/badge/gensim-white?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI%2FPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI%2BCjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iMjAwLjAwMDAwMHB0IiBoZWlnaHQ9IjIwMC4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDIwMC4wMDAwMDAgMjAwLjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoKPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsMjAwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIj4KPHBhdGggZD0iTTg3MCAxOTkwIGMtNDA4IC01NyAtNzMzIC0zNDggLTgzNyAtNzQ5IC0zMSAtMTE4IC0zNSAtMzIyIC0xMCAtNDM2CjU0IC0yNDMgMTg3IC00NTMgMzc3IC01OTcgODQgLTY0IDI0MyAtMTQyIDM0NSAtMTcwIDY4IC0xOSAxMDYgLTIyIDI1NSAtMjIKMjAwIDAgMjY2IDEzIDQxNCA4MiAxMTUgNTQgMTk4IDExMiAyODcgMjAxIDEyNCAxMjUgMjE2IDI4MiAyNjAgNDQ2IDMzIDEyMgozOCAzNTAgMTAgNDY3IC00OSAyMDUgLTEzOCAzNjUgLTI4MiA1MDMgLTEzOSAxMzIgLTI3MCAyMDYgLTQ0NiAyNTEgLTEwOCAyNwotMjczIDM4IC0zNzMgMjR6IG0zNzUgLTYxIGMyOTcgLTc1IDU2MCAtMzIwIDY2MSAtNjE2IDU5IC0xNzQgNjIgLTI4MCAxMgotNDMzIC03MiAtMjIyIC0yNDIgLTQxMSAtNDU1IC01MDUgLTE0OSAtNjcgLTM2OSAtODUgLTUyOSAtNDUgLTkzIDIzIC0yNzEKMTA3IC0yNTcgMTIxIDYgNiAyNSAzIDQ5IC03IDUxIC0yMSAxODYgLTMwIDI1MyAtMTUgMTU3IDM0IDI4NyAxNTAgMzQxIDMwNgoyOCA4MSAyNyAyMTQgLTEgMjk3IC03MyAyMTYgLTI5MCAzNDggLTUxMSAzMTAgLTE1NSAtMjcgLTI3NCAtMTE2IC0zNDQgLTI1OAotMzUgLTcwIC0zOSAtODYgLTQyIC0xNzQgLTMgLTcyIDAgLTExMyAxMyAtMTU2IDIwIC02OCAyMCAtNjcgNyAtNzIgLTE1IC01Ci04OSAxNTUgLTExMyAyNDMgLTMwIDExMiAtMzAgMjk3IDAgNDEwIDg0IDMxNSAzMjQgNTQ0IDY0MSA2MTEgNzggMTYgMTY1IDExCjI3NSAtMTd6Ii8%2BCjwvZz4KPC9zdmc%2BCg%3D%3D)
-SpaCy
+![SpaCy](https://img.shields.io/badge/spacy-white?logo=spacy)
 ![Pandas](https://img.shields.io/badge/Pandas-white?logo=pandas&logoColor=black)
 ![Numpy](https://img.shields.io/badge/NumPy-white?logo=Numpy&logoColor=grey)
 ![Matplotlib](https://img.shields.io/badge/matplotlib-white?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBzdHJva2U9ImdyYXkiPgo8ZyBzdHJva2Utd2lkdGg9IjIiIGZpbGw9IiNGRkYiPgo8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI4OCIvPgo8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI2NiIvPgo8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI0NCIvPgo8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSIyMiIvPgo8cGF0aCBkPSJtOTAsMnYxNzZtNjItMjYtMTI0LTEyNG0xMjQsMC0xMjQsMTI0bTE1MC02MkgyIi8%2BCjwvZz48ZyBvcGFjaXR5PSIuOCI%2BCjxwYXRoIGZpbGw9IiM0NEMiIGQ9Im05MCw5MGgxOGExOCwxOCAwIDAsMCAwLTV6Ii8%2BCjxwYXRoIGZpbGw9IiNCQzMiIGQ9Im05MCw5MCAzNC00M2E1NSw1NSAwIDAsMC0xNS04eiIvPgo8cGF0aCBmaWxsPSIjRDkzIiBkPSJtOTAsOTAtMTYtNzJhNzQsNzQgMCAwLDAtMzEsMTV6Ii8%2BCjxwYXRoIGZpbGw9IiNEQjMiIGQ9Im05MCw5MC01OC0yOGE2NSw2NSAwIDAsMC01LDM5eiIvPgo8cGF0aCBmaWxsPSIjM0JCIiBkPSJtOTAsOTAtMzMsMTZhMzcsMzcgMCAwLDAgMiw1eiIvPgo8cGF0aCBmaWxsPSIjM0M5IiBkPSJtOTAsOTAtMTAsNDVhNDYsNDYgMCAwLDAgMTgsMHoiLz4KPHBhdGggZmlsbD0iI0Q3MyIgZD0ibTkwLDkwIDQ2LDU4YTc0LDc0IDAgMCwwIDEyLTEyeiIvPgo8L2c%2BPC9zdmc%2B)
@@ -30,18 +30,16 @@ This project focuses on optimizing the predictive capabilities of modern RNN mod
 ## 📂 Table of Contents
 
 - [Overview](#-overview)
-- [Key Takeaways](#-key-takeaways--project-insights)
+- [Key Takeaways](#-key-takeaways)
+- [Table of Contents](#-table-of-contents)
 - [Motivation](#-motivation)
 - [Approach](#-approach)
 - [Dataset](#-dataset)
 - [Preprocessing](#-preprocessing)
-- [Exploratory Data Analysis (EDA)](#-exploratory-data-analysis-eda)
-- [Feature Engineering](#️-feature-engineering)
 - [Model Development](#-model-development)
-- [Model Performance](#-model-performance)
 - [Results and Discussion](#-results-and-discussion)
 - [Future Work](#-future-work)
-- [References](#-references)
+
 
 ## 📋 Motivation
 
@@ -60,8 +58,11 @@ My aim behind this project was to explore the dynamic field of stock price predi
 - **Time Frame**: March 3, 2022 to July 3, 2024 (2.25 years)
 - **Stock Choices**
 	- **TSLA**: Chosen to challenge the models with its high volatility during the selected period, complemented by extensive news and social media coverage, and leadership in AI and autonomous driving technologies.
+    ![](./output/notebooks/03-01-rnn-models/03-01-rnn-models_files/03-01-rnn-models_13_0.png)
 	- **AAPL**: Selected for its consistent innovation, significant media presence, and diverse product range.
+    ![](./output/notebooks/03-01-rnn-models/03-01-rnn-models_files/03-01-rnn-models_19_0.png)
 	- **GOOG**: Included due to its robust news coverage, stable growth trajectory, and extensive technological initiatives.
+    ![](./output/notebooks/03-01-rnn-models/03-01-rnn-models_files/03-01-rnn-models_25_0.png)
 - **Sources**
 	- **News Data**: [Alpha Vantage](https://www.alphavantage.co/)
 		- Provides comprehensive financial APIs for stock market data, including news headlines and sentiment analysis.
@@ -76,7 +77,7 @@ My aim behind this project was to explore the dynamic field of stock price predi
 - I filtered the data to ensure both news and stock data consist of the same window of data, in particular after feature engineering.
 - Utilized the SpaCy and SpaCy-Cleaner libraries to implement functions to remove stopwords, punctuation, and lemmatize tokens to normalize text data.
 
-## Feature Engineering
+### Feature Engineering
 
 - Implemented the FinBERT model using PyTorch (model's default library) to tokenize and compute sentiment scores (positive, negative, neutral) for both news titles and summaries.
 - Computed mean sentiment scores (`title_pos`, `title_neg`, `title_neu`, `summary_pos`, `summary_neg`, `summary_neu`) grouped by stock and date to summarize sentiment trends.
@@ -122,7 +123,20 @@ My aim behind this project was to explore the dynamic field of stock price predi
 
 ## 📈 Results and Discussion
 
-![](https://github.com/ma-shamshiri/Human-Activity-Recognition/raw/main/images/Personal%20and%20Impersonal%20Table.png)
+![](./output/model-rmse-comparison.png)
+
+### Model Architecture and Performance
+- GRU models generally outperformed LSTM models in terms of both accuracy and RMSE, indicating that the GRU's simpler architecture might be more effective for stock price prediction in this dataset.
+- Attention-CNN-LSTM models, despite their complexity, did not provide significant performance improvements and consistently performed worse than LSTMs and GRUs.
+
+### Role of Sentiment in Stock Prediction
+- Incorporating sentiment data consistently resulted in lower accuracy and higher RMSE, indicating it added noise rather than improving model performance, particularly noticeably with LSTM models for GOOG.
+- GRU models showed robust performance both with and without sentiment data, suggesting they handle noise better, but still did not gain significant benefit from sentiment analysis.
+
+### Overarching Conclusions
+- Simpler recurrent architectures such as GRUs yielded better and more robust results in terms of accuracy, RMSE, and noise-handling compared to traditional or complex hybrid models.
+- Filtering and refining input data, such as focusing on relevant news articles, may reduce noise and improve the relevance of sentiment analysis and its impact on stock prediction models.
+- Achieving a balance between model complexity and input features is crucial for optimal stock prediction. Overly complex models like Attention-CNN-LSTM performed significantly worse than all other models. Furthermore, models incorporating sentiment data consistently displayed higher RMSE than those without it. Finding the right balance between model complexity and input features is essential for achieving the best performance.
 
 ## 🪐 Future Work
 
